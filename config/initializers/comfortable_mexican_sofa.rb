@@ -99,7 +99,7 @@ end
 ComfortableMexicanSofa::AccessControl::AdminAuthentication.username = ENV['CMS_ADMIN_USER']
 ComfortableMexicanSofa::AccessControl::AdminAuthentication.password = ENV['CMS_ADMIN_PASS']
 #
- Uncomment this module and `config.admin_auth` above to use custom admin authentication
+# Uncomment this module and `config.admin_auth` above to use custom admin authentication
 # module ComfyAdminAuthentication
 #   def authenticate
 #     return true
