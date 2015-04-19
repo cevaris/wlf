@@ -187,6 +187,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bootstrap-sass (~> 3.3.4)
   cancan (~> 1.6.10)
   coffee-rails (~> 4.0.0)
   comfortable_mexican_sofa (~> 1.12.0)
