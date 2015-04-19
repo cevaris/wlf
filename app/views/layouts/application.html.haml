@@ -8,6 +8,7 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
+    = render 'layouts/header'
     - if notice
       %div{:class => 'alert alert-success', :role => 'alert'}
         = notice
@@ -15,3 +16,4 @@
       %div{:class => 'alert alert-danger', :role => 'alert'}
         = alert
     = yield
+    = render 'layouts/footer'

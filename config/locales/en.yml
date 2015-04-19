@@ -22,3 +22,6 @@
 en:
   brand:
     title: 'Westminster Legacy Foundation'
+  user:
+    signup: 'Create Account'
+    signin: 'Sign in'
