@@ -36,6 +36,7 @@ ComfortableMexicanSofa.configure do |config|
   # request (if necessary). Please note that database entries are destroyed if there's
   # no corresponding file. Fixtures are disabled by default.
   #   config.enable_fixtures = false
+  config.enable_fixtures = true
 
   # Path where fixtures can be located.
   #   config.fixtures_path = File.expand_path('db/cms_fixtures', Rails.root)
@@ -98,8 +99,8 @@ end
 # YOU REALLY WANT TO CHANGE THIS BEFORE PUTTING YOUR SITE LIVE
 ComfortableMexicanSofa::AccessControl::AdminAuthentication.username = ENV['CMS_ADMIN_USER']
 ComfortableMexicanSofa::AccessControl::AdminAuthentication.password = ENV['CMS_ADMIN_PASS']
-
-# Uncomment this module and `config.admin_auth` above to use custom admin authentication
+#
+ Uncomment this module and `config.admin_auth` above to use custom admin authentication
 # module ComfyAdminAuthentication
 #   def authenticate
 #     return true
