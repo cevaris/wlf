@@ -2,13 +2,16 @@
 %html
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %title Wlf
+    %title
+      = t 'brand.title'
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
-    %p{:class => 'notice'}
-      = notice
-    %p{:class => 'alert'}
-      = alert
+    - if notice
+      %div{:class => 'alert alert-success', :role => 'alert'}
+        = notice
+    - if alert
+      %div{:class => 'alert alert-danger', :role => 'alert'}
+        = alert
     = yield
