@@ -46,4 +46,4 @@ gem "haml", "~> 4.0.6"
 gem "haml-rails", "~> 0.9"
 gem 'comfortable_mexican_sofa', '~> 1.12.0'
 gem 'devise', '~> 3.4.0'
-gem 'cancan'
+gem 'cancan', '~> 1.6.10'
