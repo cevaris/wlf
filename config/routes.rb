@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   comfy_route :cms_admin, :path => '/admin'
 
-  devise_for :users
+  devise_for :users, :controllers => {:registrations => "registrations"}
+
+  resources :accounts
 
   # Make sure this routeset is defined last
   comfy_route :cms, :path => '/', :sitemap => false

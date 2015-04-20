@@ -44,6 +44,9 @@ gem 'pg', group: [:production]
 gem 'rails_12factor', group: :production
 
 gem 'html2haml', group: :development
+gem 'pry', group: [:development, :test]
+gem 'factory_girl_rails', group: :test
+gem 'faker', group: :test
 
 gem "haml", "~> 4.0.6"
 gem "haml-rails", "~> 0.9"
