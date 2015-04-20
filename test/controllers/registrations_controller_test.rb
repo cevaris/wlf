@@ -23,9 +23,7 @@ class RegistrationsControllerTest < ActionController::TestCase
                last_name: @user.account.last_name,
              }
            }
-      binding.pry
     end
-
-    assert_redirected_to account_path(assigns(:user))
+    assert_redirected_to '/'
   end
 end
