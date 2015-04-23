@@ -37,6 +37,7 @@ gem 'spring',        group: :development
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+gem 'byebug', group: [:development, :test]
 
 gem 'dotenv-rails', :require => 'dotenv/rails-now'
 
@@ -45,6 +46,10 @@ gem 'rails_12factor', group: :production
 
 gem 'html2haml', group: :development
 gem 'pry', group: [:development, :test]
+gem 'pry-byebug', group: [:development, :test]
+# gem 'pry-remote', group: [:development, :test]
+# gem 'pry-nav', group: [:development, :test]
+# gem 'pry-debugger', group: [:development, :test]
 gem 'factory_girl_rails', group: :test
 gem 'faker', group: :test
 

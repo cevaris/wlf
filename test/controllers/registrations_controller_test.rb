@@ -14,7 +14,7 @@ class RegistrationsControllerTest < ActionController::TestCase
   end
 
   test "should create user" do
-    assert_difference('User.count', 1) do
+    assert_difference(['User.count', 'Account.count'], 1) do
       post :create, user: {
              email: @user.email,
              password: 'password',

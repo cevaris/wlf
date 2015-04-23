@@ -1,3 +1,5 @@
+TEST_PASSWORD = 'password'
+
 FactoryGirl.define do
 
   factory :account do
@@ -9,7 +11,9 @@ FactoryGirl.define do
   factory :user do
     account
     email Faker::Internet.email
-    encrypted_password Devise.bcrypt(User, 'password')
+    encrypted_password Devise.bcrypt(User, TEST_PASSWORD)
+    password TEST_PASSWORD
+    confirmed_at Time.now
   end
 
 end

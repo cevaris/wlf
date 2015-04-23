@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   comfy_route :cms_admin, :path => '/admin'
 
-  devise_for :users, :controllers => {:registrations => "registrations"}
+  devise_for :users, :controllers => {
+               :registrations => "registrations",
+               :sessions => "sessions"
+             }
 
   resources :accounts
 
