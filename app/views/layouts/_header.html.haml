@@ -16,7 +16,7 @@
         %li
           %a{:href => "/contact-us#"} Contact Us
       %ul.nav.navbar-nav.navbar-right
-        - if current_user
+        - if user_signed_in?
           %li
             = link_to t('user.signout'), destroy_user_session_path, :method => :delete
         - else

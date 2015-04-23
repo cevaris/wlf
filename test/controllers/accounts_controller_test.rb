@@ -1,6 +1,8 @@
 require 'test_helper'
 
 class AccountsControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
+
   setup do
     @account = accounts(:one)
   end
