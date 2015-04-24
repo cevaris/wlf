@@ -14,10 +14,12 @@ class AccountsController < ApplicationController
 
   def new
     @account = Account.new
+    @account.build_address
     respond_with(@account)
   end
 
   def edit
+    @account.build_address unless @account.address
   end
 
   def create
@@ -42,6 +44,16 @@ class AccountsController < ApplicationController
     end
 
     def account_params
-      params.require(:account).permit(:user_id, :first_name, :last_name)
+      params.require(:account).permit(
+        :user_id, :first_name, :last_name,
+        address_attributes: [
+          :venue_name,
+          :first_line,
+          :second_line,
+          :city,
+          :state,
+          :zipcode
+        ]
+      )
     end
 end

@@ -4,7 +4,7 @@ class AccountsControllerTest < ActionController::TestCase
   include Devise::TestHelpers
 
   setup do
-    @account = accounts(:one)
+    @account = FactoryGirl.create(:account)
   end
 
   test "should get index" do

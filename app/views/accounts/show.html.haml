@@ -9,6 +9,10 @@
 %p
   %b Last name:
   = @account.last_name
+- if @account.address
+  %p
+    %b Address:
+    = @account.address.inspect
 
 = link_to 'Edit', edit_account_path(@account)
 \|

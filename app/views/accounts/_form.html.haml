@@ -5,15 +5,25 @@
       %ul
         - @account.errors.full_messages.each do |msg|
           %li= msg
-
-  .field
-    = f.label :user
-    = f.text_field :user
-  .field
-    = f.label :first_name
-    = f.text_field :first_name
-  .field
-    = f.label :last_name
-    = f.text_field :last_name
+  %h4 Account
+  .form-group.col-md-12
+    = f.hidden_field :user_id, value: @account.user_id
+  .form-group.col-md-12
+    = f.text_field :first_name, class: 'form-control', placeholder: 'First Name'
+  .form-group.col-md-12
+    = f.text_field :last_name, class: 'form-control',placeholder: 'Last Name'
+  %br
+  %h4 Address
+  = f.fields_for(:address) do |af|
+    .form-group.col-md-12
+      = af.text_field :first_line, class: 'form-control', placeholder: 'First Line'
+    .form-group.col-md-12
+      = af.text_field :second_line, class: 'form-control', placeholder: 'Second Line'
+    .form-group.col-md-4
+      = af.text_field :city, class: 'form-control', placeholder: 'City'
+    .form-group.col-md-4
+      = af.text_field :state, class: 'form-control', placeholder: 'State'
+    .form-group.col-md-4
+      = af.text_field :zipcode, class: 'form-control', placeholder: 'Zipcode'
   .actions
-    = f.submit 'Save'
+    = f.submit 'Save', class: 'btn btn-default'

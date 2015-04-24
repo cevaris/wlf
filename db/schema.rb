@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150419232332) do
+ActiveRecord::Schema.define(version: 20150424032751) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,9 +22,22 @@ ActiveRecord::Schema.define(version: 20150419232332) do
     t.string   "last_name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "address_id"
   end
 
+  add_index "accounts", ["address_id"], name: "index_accounts_on_address_id", using: :btree
   add_index "accounts", ["user_id"], name: "index_accounts_on_user_id", using: :btree
+
+  create_table "addresses", force: true do |t|
+    t.string   "venue_name"
+    t.string   "first_line"
+    t.string   "second_line"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zipcode"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "comfy_cms_blocks", force: true do |t|
     t.string   "identifier",     null: false
