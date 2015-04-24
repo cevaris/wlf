@@ -1,6 +1,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "sticky-footer";
+@import 'bootstrap-wysihtml5/bootstrap3-wysihtml5.css';
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
@@ -14,5 +15,5 @@
  * file per style scope.
  *
  *= require_tree .
- *= require_self
+ *= require_self 
  */
