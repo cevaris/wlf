@@ -59,7 +59,7 @@ gem 'comfortable_mexican_sofa', '~> 1.12.0'
 gem 'devise', '~> 3.4.0'
 gem 'cancan', '~> 1.6.10'
 gem 'bootstrap-sass', '~> 3.3.4'
-gem 'bootstrap-wysihtml5-rails'
-
+gem 'bootstrap-wysihtml5-rails', '~> 0.3'
+gem 'select2-rails', '~> 3.5'
 
 ruby "2.1.2"

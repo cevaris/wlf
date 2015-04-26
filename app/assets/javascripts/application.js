@@ -15,4 +15,5 @@
 //= require bootstrap-sprockets
 //= require turbolinks
 //= require bootstrap-wysihtml5
+//= require select2
 //= require_tree .
