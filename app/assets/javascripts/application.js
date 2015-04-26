@@ -16,4 +16,8 @@
 //= require turbolinks
 //= require bootstrap-wysihtml5
 //= require select2
+//= require moment
+//= require bootstrap-datetimepicker
+//= require detect_timezone
+//= require jquery.detect_timezone
 //= require_tree .

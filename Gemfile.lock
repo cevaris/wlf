@@ -39,6 +39,8 @@ GEM
       sass (>= 3.2.19)
     bootstrap-wysihtml5-rails (0.3.3.7)
       railties (>= 3.0)
+    bootstrap3-datetimepicker-rails (4.7.14)
+      momentjs-rails (>= 2.8.1)
     bootstrap_form (2.3.0)
     builder (3.2.2)
     byebug (4.0.5)
@@ -74,6 +76,8 @@ GEM
       rails (>= 4.0.0, < 5)
       rails-i18n (>= 4.0.0)
       sass-rails (>= 4.0.3)
+    detect_timezone_rails (0.0.5)
+      railties (>= 3.1)
     devise (3.4.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -124,6 +128,8 @@ GEM
     mime-types (2.4.3)
     mini_portile (0.6.2)
     minitest (5.5.1)
+    momentjs-rails (2.10.2)
+      railties (>= 3.1)
     multi_json (1.11.0)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
@@ -219,10 +225,12 @@ PLATFORMS
 DEPENDENCIES
   bootstrap-sass (~> 3.3.4)
   bootstrap-wysihtml5-rails (~> 0.3)
+  bootstrap3-datetimepicker-rails (~> 4.7.14)
   byebug
   cancan (~> 1.6.10)
   coffee-rails (~> 4.0.0)
   comfortable_mexican_sofa (~> 1.12.0)
+  detect_timezone_rails
   devise (~> 3.4.0)
   dotenv-rails
   factory_girl_rails
@@ -232,6 +240,7 @@ DEPENDENCIES
   html2haml
   jbuilder (~> 2.0)
   jquery-rails
+  momentjs-rails (>= 2.9.0)
   pg
   pry
   pry-byebug

@@ -33,11 +33,8 @@
       .col-md-2
         .form-group
           = af.text_field :zipcode, class: 'form-control', placeholder: 'Zipcode'
-        -# .form-group.col-md-12
-        -#   %textarea.wysihtml5.form-control{placeholder: 'Enter Text'}
-        -#   :javascript
-        -#     $('.wysihtml5').wysihtml5();
   .actions
     = f.submit 'Save', class: 'btn btn-default'
-  :javascript
-    $('#account_address_attributes_state').select2();
+
+:javascript
+  $('#account_address_attributes_state').select2();

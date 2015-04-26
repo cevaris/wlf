@@ -1,0 +1,41 @@
+= form_for @event do |f|
+  - if @event.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@event.errors.count, "error")} prohibited this event from being saved:"
+      %ul
+        - @event.errors.full_messages.each do |msg|
+          %li= msg
+  .row
+    .col-md-12
+      .form-group
+        = f.text_field :name, class: 'form-control'
+      .form-group
+        = f.text_area :description, class: 'form-control wysihtml5', placeholder: 'Event Description'
+  .row
+    .col-md-6
+      .input-group.date
+        = f.text_field :start_date, class: 'form-control', placeholder: 'Start Date'
+        %span.input-group-addon
+          %span.glyphicon.glyphicon-calendar
+    .col-md-6.date
+      .input-group.date
+        = f.text_field :end_date, class: 'form-control', placeholder: 'End Date'
+        %span.input-group-addon
+          %span.glyphicon.glyphicon-calendar
+  .row
+    .col-md-12
+      .form-group
+        = f.label :field_schema
+        = f.text_area :field_schema, class: 'form-control'
+      .form-group
+        = f.hidden_field :timezone
+  .actions
+    = f.submit 'Save', class: 'btn btn-default'
+
+:javascript
+  $('.wysihtml5').wysihtml5();
+  $('.date').datetimepicker({
+    format: 'YYYY-MM-DDTHH:mm:00Z',
+    sideBySide: true
+  });
+  $('#event_timezone').set_timezone()
