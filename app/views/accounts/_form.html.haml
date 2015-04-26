@@ -29,7 +29,7 @@
           = af.text_field :city, class: 'form-control', placeholder: 'City'
       .col-md-2
         .form-group
-          = af.select :state, Address::ABBR_STATES, {:include_blank => 'State'}, {class: 'select2 form-control'}
+          = af.select :state, Address::ABBR_STATES, {prompt: 'State'}, {class: 'select2 form-control'}
       .col-md-2
         .form-group
           = af.text_field :zipcode, class: 'form-control', placeholder: 'Zipcode'
