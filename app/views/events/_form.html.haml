@@ -8,7 +8,7 @@
   .row
     .col-md-12
       .form-group
-        = f.text_field :name, class: 'form-control'
+        = f.text_field :name, class: 'form-control', placeholder: 'Event Name/Title'
       .form-group
         = f.text_area :description, class: 'form-control wysihtml5', placeholder: 'Event Description'
   .row
@@ -26,11 +26,10 @@
     .col-md-12
       .form-group
         = f.label :field_schema
-        = f.text_area :field_schema, class: 'form-control'
+        -# = f.text_area :field_schema, class: 'form-control'
+        = f.hidden_field :field_schema
   = f.hidden_field :timezone
   = f.hidden_field :account_id, value: current_account.id
-
-
   .row
     .col-md-12
       #fields-editor
