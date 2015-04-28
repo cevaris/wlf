@@ -1,15 +1,20 @@
+require 'ext/string'
+
 class Event < ActiveRecord::Base
-  include EventsHelper
+  belongs_to :account
+  alias_attribute :creator, :account
   validates :name, presence: true, allow_blank: false
   validates :description, presence: true, allow_blank: false
   validates :start_date, presence: true, allow_blank: false
 
-  # def start_date=(date)
-  #   parse_datetime(date)
-  # end
+  validate :validate_json_format
 
-  # def end_date=(date)
-  #   parse_datetime(date)
-  # end
+  protected
+
+  def validate_json_format
+    unless self.field_schema.is_json?
+      errors[:base] << "Field Schema is an invalid format"
+    end
+  end
 
 end

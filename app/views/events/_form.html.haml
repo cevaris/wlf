@@ -27,8 +27,13 @@
       .form-group
         = f.label :field_schema
         = f.text_area :field_schema, class: 'form-control'
-      .form-group
-        = f.hidden_field :timezone
+  = f.hidden_field :timezone
+  = f.hidden_field :account_id, value: current_account.id
+
+
+  .row
+    .col-md-12
+      #fields-editor
   .actions
     = f.submit 'Save', class: 'btn btn-default'
 
@@ -39,3 +44,6 @@
     sideBySide: true
   });
   $('#event_timezone').set_timezone()
+  $('#fields-editor').buildEventForm({
+    'schema': "#{escape_javascript(@event.field_schema)}"
+  })

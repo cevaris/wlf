@@ -21,14 +21,6 @@ class EventsController < ApplicationController
   end
 
   def create
-    # mod_event_params = event_params
-    # if event_params[:start_date]
-    #   mod_event_params[:start_date] = Date.strptime(event_params[:start_date], '%m/%d/%Y %I:%M %p')
-    # end
-    # if event_params[:end_date]
-    #   mod_event_params[:end_date] = Date.strptime(event_params[:end_date], '%m/%d/%Y %I:%M %p')
-    # end
-
     @event = Event.new(event_params)
     @event.save
     respond_with(@event)
@@ -50,6 +42,14 @@ class EventsController < ApplicationController
     end
 
     def event_params
-      params.require(:event).permit(:name, :description, :start_date, :end_date, :timezone, :field_schema)
+      params.require(:event).permit(
+        :name,
+        :account_id,
+        :description,
+        :start_date,
+        :end_date,
+        :timezone,
+        :field_schema
+      )
     end
 end
