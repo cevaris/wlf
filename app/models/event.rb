@@ -1,6 +1,6 @@
 class Event < ActiveRecord::Base
   belongs_to :account
-  alias_attribute :creator, :account
+  # alias_attribute :creator, :account
 
   has_many :form_questions
   accepts_nested_attributes_for :form_questions,
@@ -10,5 +10,4 @@ class Event < ActiveRecord::Base
   validates :name, presence: true, allow_blank: false
   validates :description, presence: true, allow_blank: false
   validates :start_date, presence: true, allow_blank: false
-
 end

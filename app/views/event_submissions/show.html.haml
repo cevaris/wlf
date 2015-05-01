@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Account:
+  = @event_submission.account
+%p
+  %b Event:
+  = @event_submission.event
+
+= link_to 'Edit', edit_event_event_submission_path(@event, @event_submission)
+\|
+= link_to 'Back', event_event_submissions_path

@@ -1,0 +1,16 @@
+= form_for [@event, @event_submission] do |f|
+  - if @event_submission.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@event_submission.errors.count, "error")} prohibited this event_submission from being saved:"
+      %ul
+        - @event_submission.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :account
+    = f.hidden_field :account_id, value: current_account.id
+  .field
+    = f.label :event
+    = f.hidden_field :event_id, value: @event.id
+  .actions
+    = f.submit 'Save'

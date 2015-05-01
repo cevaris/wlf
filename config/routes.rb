@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :events
+  resources :events do
+    resources :event_submissions
+  end
   comfy_route :cms_admin, :path => '/admin'
 
   devise_for :users, :controllers => {

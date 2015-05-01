@@ -1,0 +1,23 @@
+%h1 Listing event_submissions
+
+%table
+  %thead
+    %tr
+      %th Account
+      %th Event
+      %th
+      %th
+      %th
+
+  %tbody
+    - @event_submissions.each do |event_submission|
+      %tr
+        %td= event_submission.account
+        %td= event_submission.event
+        %td= link_to 'Show', event_submission
+        %td= link_to 'Edit', edit_event_submission_path(event_submission)
+        %td= link_to 'Destroy', event_submission, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Event submission', new_event_submission_path
