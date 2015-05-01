@@ -49,7 +49,13 @@ class EventsController < ApplicationController
         :start_date,
         :end_date,
         :timezone,
-        :field_schema
+        :field_schema,
+        form_questions_attributes: [
+          :id,
+          :name,
+          :field_type,
+          :_destroy
+        ]
       )
     end
 end

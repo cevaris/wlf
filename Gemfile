@@ -63,6 +63,7 @@ gem 'bootstrap-wysihtml5-rails', '~> 0.3'
 gem 'select2-rails', '~> 3.5'
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.7.14'
-gem 'detect_timezone_rails'
+gem 'detect_timezone_rails', '~> 0.0.5'
+gem 'cocoon', '~> 1.2.6'
 
 ruby "2.1.2"

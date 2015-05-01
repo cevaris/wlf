@@ -22,15 +22,16 @@
         = f.text_field :end_date, class: 'form-control', placeholder: 'End Date'
         %span.input-group-addon
           %span.glyphicon.glyphicon-calendar
-  .row
-    .col-md-12
-      .form-group
-        = f.label :field_schema
-        -# = f.text_area :field_schema, class: 'form-control'
-        = f.hidden_field :field_schema
+  %br
+  #form_questions
+    = f.fields_for(:form_questions) do |qf|
+      = render 'form_question_fields', f: qf
+    .links
+      = link_to_add_association 'Add Question', f, :form_questions, {class: 'btn btn-default'}
+
   = f.hidden_field :timezone
   = f.hidden_field :account_id, value: current_account.id
-  #fields-editor
+  %br
   .actions
     = f.submit 'Save', class: 'btn btn-default'
 
@@ -41,7 +42,8 @@
     sideBySide: true
   });
   $('#event_timezone').set_timezone()
-  $('#fields-editor').buildEventForm({
-    'schema': "#{escape_javascript(@event.field_schema)}"
-  })
   $('select').select2();
+  $('form').on('cocoon:after-insert', function() {
+    $('select').select2();
+  });
+  

@@ -50,6 +50,7 @@ GEM
       activesupport (>= 3.0)
     cocaine (0.5.7)
       climate_control (>= 0.0.3, < 1.0)
+    cocoon (1.2.6)
     codemirror-rails (5.0)
       railties (>= 3.0, < 5)
     coderay (1.1.0)
@@ -228,9 +229,10 @@ DEPENDENCIES
   bootstrap3-datetimepicker-rails (~> 4.7.14)
   byebug
   cancan (~> 1.6.10)
+  cocoon (~> 1.2.6)
   coffee-rails (~> 4.0.0)
   comfortable_mexican_sofa (~> 1.12.0)
-  detect_timezone_rails
+  detect_timezone_rails (~> 0.0.5)
   devise (~> 3.4.0)
   dotenv-rails
   factory_girl_rails

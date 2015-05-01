@@ -20,4 +20,5 @@
 //= require bootstrap-datetimepicker
 //= require detect_timezone
 //= require jquery.detect_timezone
+//= require cocoon
 //= require_tree .
