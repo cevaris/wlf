@@ -1,7 +1,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
-@import "sticky-footer";
 @import 'bootstrap-wysihtml5/bootstrap3-wysihtml5.css';
+@import "sticky-footer";
 @import 'select2';
 @import 'select2-bootstrap';
 @import 'bootstrap-datetimepicker';
@@ -19,5 +19,5 @@
  * file per style scope.
  *
  *= require_tree .
- *= require_self 
+ *= require_self
  */
