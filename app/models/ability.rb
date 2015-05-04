@@ -28,5 +28,32 @@ class Ability
     #
     # See the wiki for details:
     # https://github.com/ryanb/cancan/wiki/Defining-Abilities
+    if user and user.account
+      account = user.account
+
+      super_admin = AccountRole.get(:super_admin)
+      admin = AccountRole.get(:admin)
+      basic = AccountRole.get(:basic)
+
+      if account.account_role == super_admin
+        can :manage, :all
+      elsif account.account_role == admin
+        can :manage, User, id: user.id
+        can :manage, Account, id: all
+        can :manage, Address, :all
+
+        can :manage, Event, :all
+        can :manage, EventSubmission, :all
+      elsif account.account_role == basic
+        # Donors, Sponsors
+        can :manage, User, :id => user.id
+        can :manage, Account, :id => account.id
+        can :read, Event
+        can :manage, EventSubmission, id: EventSubmission.where(account_id: account.id).ids
+      end
+
+      can :create, EventSubmission
+
+    end
   end
 end

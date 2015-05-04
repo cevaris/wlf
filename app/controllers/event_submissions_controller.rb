@@ -1,4 +1,8 @@
 class EventSubmissionsController < ApplicationController
+
+  load_and_authorize_resource :event
+  load_and_authorize_resource :event_submission, through: :event
+
   before_action :set_event_submission, only: [:show, :edit, :update, :destroy]
   before_action :set_event
 

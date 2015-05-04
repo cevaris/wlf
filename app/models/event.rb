@@ -1,6 +1,7 @@
 class Event < ActiveRecord::Base
   belongs_to :account
-  # alias_attribute :creator, :account
+
+  has_many :event_submissions
 
   has_many :form_questions
   accepts_nested_attributes_for :form_questions,
