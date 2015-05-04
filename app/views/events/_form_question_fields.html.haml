@@ -5,7 +5,7 @@
         = f.text_field :name, class: 'form-control', placeholder: 'Question Name'
     .col-md-5
       .form-group
-        =f.select :field_type, FormQuestion::FIELD_TYPE, {prompt: 'Question Type'}, {class: 'select2 form-control'}
+        = f.select :field_type, FormQuestion::FIELD_TYPE, {prompt: 'Question Type'}, {class: 'select2 form-control'}
     .col-md-2
       .form-group
         = link_to_remove_association 'Delete Question', f, {class: 'btn btn-default form-control'}

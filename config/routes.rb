@@ -2,15 +2,16 @@ Rails.application.routes.draw do
   resources :events do
     resources :event_submissions
   end
-  comfy_route :cms_admin, :path => '/admin'
 
-  devise_for :users, :controllers => {
+  devise_for :users,
+             :controllers => {
                :registrations => "registrations",
                :sessions => "sessions"
              }
 
   resources :accounts
 
+  comfy_route :cms_admin, :path => '/admin'
   # Make sure this routeset is defined last
   comfy_route :cms, :path => '/', :sitemap => false
 

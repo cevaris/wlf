@@ -12,12 +12,12 @@
   %tbody
     - @event_submissions.each do |event_submission|
       %tr
-        %td= event_submission.account
-        %td= event_submission.event
-        %td= link_to 'Show', event_submission
-        %td= link_to 'Edit', edit_event_submission_path(event_submission)
-        %td= link_to 'Destroy', event_submission, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %td= event_submission.account.name
+        %td= event_submission.event.name
+        %td= link_to 'Show', event_event_submission_path(event_submission.event, event_submission)
+        %td= link_to 'Edit', edit_event_event_submission_path(event_submission.event, event_submission)
+        %td= link_to 'Destroy', event_event_submission_path(event_submission.event, event_submission), :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
 
-= link_to 'New Event submission', new_event_submission_path
+= link_to 'New Event submission', new_event_event_submission_path

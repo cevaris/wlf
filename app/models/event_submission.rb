@@ -4,5 +4,5 @@ class EventSubmission < ActiveRecord::Base
 
   validates_uniqueness_of :event,
                           scope: :account,
-                          mesage: 'already has a submission'
+                          mesage: 'already has a submission.'
 end
