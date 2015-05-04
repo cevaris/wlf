@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   protected
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up).push(
-      :role, account_attributes: [:first_name, :last_name])
+      :role, account_attributes: [:first_name, :last_name, :account_type_id])
   end
 
 

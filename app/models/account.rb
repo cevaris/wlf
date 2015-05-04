@@ -3,6 +3,7 @@ class Account < ActiveRecord::Base
 
   # Used internally for permission handling
   belongs_to :account_role
+
   # Used by the app for account handling
   belongs_to :account_type
   validates :account_type, presence: true, allow_blank: false
@@ -14,8 +15,6 @@ class Account < ActiveRecord::Base
   validates :last_name, presence: true, allow_blank: true
 
   def name
-    # If company, render company_name
-    # else render first/last name
     "#{self.first_name.titleize} #{self.last_name.titleize}"
   end
 
