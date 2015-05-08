@@ -1,28 +1,30 @@
-%p#notice= notice
+.container
+  .row
+    %p#notice= notice
 
-%p
-  %b Account:
-  = @event_submission.account.name
-%p
-  %b Event:
-  = @event_submission.event.name
-%p
-  %b Submitted on:
-  = @event_submission.created_at
+    %p
+      %b Account:
+      = @event_submission.account.name
+    %p
+      %b Event:
+      = @event_submission.event.name
+    %p
+      %b Submitted on:
+      = @event_submission.created_at
 
-%p
-  %table.table
-    %thead
-      %tr
-        %th Question
-        %th Answer
-    %tbody
-      - @event_submission.form_answers.each do |answer|
-        %tr
-          %td= answer.form_question.name
-          %td= answer.value
+    %p
+      %table.table
+        %thead
+          %tr
+            %th Question
+            %th Answer
+        %tbody
+          - @event_submission.form_answers.each do |answer|
+            %tr
+              %td= answer.form_question.name
+              %td= answer.value
 
 
-= link_to 'Edit', edit_event_event_submission_path(@event, @event_submission)
-\|
-= link_to 'Back', event_event_submissions_path
+    = link_to 'Edit', edit_event_event_submission_path(@event, @event_submission)
+    \|
+    = link_to 'Back', event_event_submissions_path

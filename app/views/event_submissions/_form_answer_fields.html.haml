@@ -1,11 +1,16 @@
 .nested-fields
   .row
-    .col-md-12
-      = f.object.form_question.inspect
+    .col-md-2.text-right
+      %label
+        = f.object.form_question.name
+    .col-md-10
       = f.hidden_field :form_question_id, value: f.object.form_question.id
-      - if ['Text', 'Number'].include? f.object.form_question.field_type
-        = f.text_field :value,  class: 'form-control', placeholder: f.object.form_question.name
+      - if f.object.form_question.field_type == 'Text'
+        = f.text_field :value,  class: 'form-control', placeholder: ''
       - elsif f.object.form_question.field_type == 'Email'
-        = f.email_field :value,  class: 'form-control', placeholder: f.object.form_question.name
+        = f.email_field :value,  class: 'form-control', placeholder: 'email@example.com'
+      - if f.object.form_question.field_type == 'Number'
+        = f.text_field :value,  class: 'form-control', placeholder: '123, 0.11, 33.1'
       - elsif f.object.form_question.field_type == 'Phone'
-        = f.telephone_field :value,  class: 'form-control', placeholder: f.object.form_question.name
+        = f.telephone_field :value,  class: 'form-control', placeholder: '1234567890 '
+  %br
