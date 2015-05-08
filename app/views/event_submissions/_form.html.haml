@@ -11,8 +11,6 @@
     = f.hidden_field :event_id, value: @event.id
   #form_answers
     = f.fields_for(:form_answers) do |ff|
-      = ff.object.form_question.inspect
-      = ff.hidden_field :form_question_id, value: ff.object.form_question.id
-      = ff.text_field :value,  class: 'form-control', placeholder: ff.object.form_question.name
+      = render 'form_answer_fields', f: ff
   .actions
     = f.submit 'Save'
