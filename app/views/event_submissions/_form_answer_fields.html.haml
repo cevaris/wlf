@@ -1,12 +1,12 @@
 .nested-fields
   .row
-    .col-md-2.text-right
+    .col-md-2
       %label
         = f.object.form_question.name
     .col-md-10
       = f.hidden_field :form_question_id, value: f.object.form_question.id
       - if f.object.form_question.field_type == 'Text'
-        = f.text_field :value,  class: 'form-control', placeholder: ''
+        = f.text_field :value,  class: 'form-control', placeholder: f.object.form_question.name
       - elsif f.object.form_question.field_type == 'Email'
         = f.email_field :value,  class: 'form-control', placeholder: 'email@example.com'
       - if f.object.form_question.field_type == 'Number'
