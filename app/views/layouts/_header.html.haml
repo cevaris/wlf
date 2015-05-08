@@ -15,6 +15,9 @@
           %a{:href => "/about-us"} About Us
         %li
           %a{:href => "/contact-us#"} Contact Us
+        - if user_signed_in? and current_account
+          %li
+            = link_to 'Events', events_path
       %ul.nav.navbar-nav.navbar-right
         - if user_signed_in? and current_account
           %li

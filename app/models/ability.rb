@@ -39,11 +39,11 @@ class Ability
         can :manage, :all
       elsif account.account_role == admin
         can :manage, User, id: user.id
-        can :manage, Account, id: all
-        can :manage, Address, :all
+        can :manage, Account
+        can :manage, Address
 
-        can :manage, Event, :all
-        can :manage, EventSubmission, :all
+        can :manage, Event
+        can :manage, EventSubmission
       elsif account.account_role == basic
         # Donors, Sponsors
         can :manage, User, :id => user.id

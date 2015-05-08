@@ -45,6 +45,7 @@ gem 'pg', group: [:production]
 gem 'rails_12factor', group: :production
 
 gem 'html2haml', group: :development
+gem 'gem-ctags', group: :development
 gem 'pry', group: [:development, :test]
 gem 'pry-byebug', group: [:development, :test]
 # gem 'pry-remote', group: [:development, :test]

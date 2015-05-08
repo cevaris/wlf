@@ -4,7 +4,6 @@
   %thead
     %tr
       %th Name
-      %th Description
       %th Start date
       %th End time
       %th Field schema
@@ -16,7 +15,6 @@
     - @events.each do |event|
       %tr
         %td= event.name
-        %td= event.description
         %td= event.start_date
         %td= event.end_date
         %td= link_to 'Show', event

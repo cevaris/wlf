@@ -19,6 +19,12 @@ class EventSubmissionsController < ApplicationController
 
   def new
     @event_submission = EventSubmission.new
+    @event.form_questions.each do |q|
+      @event_submission.form_answers.build(
+        event_submission: @event_submission,
+        form_question: q
+      )
+    end
     respond_with(@event, @event_submission)
   end
 
@@ -51,6 +57,16 @@ class EventSubmissionsController < ApplicationController
   end
 
   def event_submission_params
-    params.require(:event_submission).permit(:event_id, :account_id)
+    params.require(:event_submission).permit(
+      :event_id,
+      :account_id,
+      form_answers_attributes: [
+        :id,
+        :event_submission_id,
+        :form_question_id,
+        :value,
+        :_destroy
+      ]
+    )
   end
 end

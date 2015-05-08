@@ -1,0 +1,6 @@
+.nested-fields
+  .row
+    .col-md-12
+      = f.hidden_field :event_id, value: @event.id
+      = f.hidden_field :form_question, value: q.id
+      = f.text_field :value,  class: 'form-control', placeholder: q.name
