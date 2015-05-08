@@ -3,4 +3,9 @@
     .col-md-12
       = f.object.form_question.inspect
       = f.hidden_field :form_question_id, value: f.object.form_question.id
-      = f.text_field :value,  class: 'form-control', placeholder: f.object.form_question.name
+      - if ['Text', 'Number'].include? f.object.form_question.field_type
+        = f.text_field :value,  class: 'form-control', placeholder: f.object.form_question.name
+      - elsif f.object.form_question.field_type == 'Email'
+        = f.email_field :value,  class: 'form-control', placeholder: f.object.form_question.name
+      - elsif f.object.form_question.field_type == 'Phone'
+        = f.telephone_field :value,  class: 'form-control', placeholder: f.object.form_question.name

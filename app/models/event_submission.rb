@@ -2,7 +2,8 @@ class EventSubmission < ActiveRecord::Base
   belongs_to :account
   belongs_to :event
 
-  has_many :form_answers
+  has_many :form_answers, dependent: :destroy
+  validates_associated :form_answers
   accepts_nested_attributes_for :form_answers,
                                 :reject_if => :all_blank,
                                 :allow_destroy => true

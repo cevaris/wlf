@@ -67,4 +67,5 @@ gem 'bootstrap3-datetimepicker-rails', '~> 4.7.14'
 gem 'detect_timezone_rails', '~> 0.0.5'
 gem 'cocoon', '~> 1.2.6'
 
+
 ruby "2.1.2"
