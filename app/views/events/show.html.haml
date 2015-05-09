@@ -1,21 +1,35 @@
-%p#notice= notice
+.container
+  .row
+    %p#notice= notice
 
-%p
-  %b Name:
-  = @event.name
-%p
-  %b Description:
-  = @event.description
-%p
-  %b Start date:
-  = @event.start_date
-%p
-  %b End date:
-  = @event.end_date
+    %p
+      %b Name:
+      = @event.name
+    %p
+      %b Description:
+      = @event.description.html_safe
+    %p
+      %b Start date:
+      = @event.start_date
+    %p
+      %b End date:
+      = @event.end_date
 
-= link_to 'Edit', edit_event_path(@event)
-\|
-= link_to 'Back', events_path
+    %p
+      %table.table
+        %thead
+          %tr
+            %th Question
+            %th Question Type
+        %tbody
+          - @event.form_questions.each do |question|
+            %tr
+              %td= question.name
+              %td= question.field_type
 
-%p
-  = link_to 'Apply', new_event_event_submission_path(@event)
+    = link_to 'Edit', edit_event_path(@event)
+    \|
+    = link_to 'Back', events_path
+
+    %p
+      = link_to 'Apply', new_event_event_submission_path(@event)

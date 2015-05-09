@@ -66,6 +66,7 @@ gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.7.14'
 gem 'detect_timezone_rails', '~> 0.0.5'
 gem 'cocoon', '~> 1.2.6'
-
+gem "wysiwyg-rails"
+gem 'font-awesome-sass', '~> 4.3.0'
 
 ruby "2.1.2"

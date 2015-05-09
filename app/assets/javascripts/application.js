@@ -21,4 +21,5 @@
 //= require detect_timezone
 //= require jquery.detect_timezone
 //= require cocoon
+//= require froala_editor.min
 //= require_tree .

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :events do
-    resources :event_submissions
+    resources :event_submissions, path: 'submissions'
   end
 
   devise_for :users,

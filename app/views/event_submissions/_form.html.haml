@@ -1,24 +1,20 @@
-.container
-  .row
-    = form_for [@event, @event_submission] do |f|
-      - if @event_submission.errors.any?
-        #error_explanation
-          %h2= "#{pluralize(@event_submission.errors.count, "error")} prohibited this event_submission from being saved:"
-          %ul
-            - @event_submission.errors.full_messages.each do |msg|
-              %li= msg
-            - @event_submission.form_answers.each do |a|
-              - a.errors.full_messages.each do |msg|
-                %li= msg
-      .field
-        = f.hidden_field :account_id, value: current_account.id
-      .field
-        = f.hidden_field :event_id, value: @event.id
+= form_for [@event, @event_submission] do |f|
+  - if @event_submission.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@event_submission.errors.count, "error")} prohibited this Submission from being saved:"
+      %ul
+        - @event_submission.errors.full_messages.each do |msg|
+          %li= msg
+        - @event_submission.form_answers.each do |a|
+          - a.errors.full_messages.each do |msg|
+            %li= msg
+  .field
+    = f.hidden_field :account_id, value: current_account.id
+  .field
+    = f.hidden_field :event_id, value: @event.id
 
-      = @event.description.html_safe
-
-      #form_answers
-        = f.fields_for(:form_answers) do |ff|
-          = render 'form_answer_fields', f: ff
-      .actions
-        = f.submit 'Save'
+  #form_answers
+    = f.fields_for(:form_answers) do |ff|
+      = render 'form_answer_fields', f: ff
+  .actions
+    = f.submit 'Save'
