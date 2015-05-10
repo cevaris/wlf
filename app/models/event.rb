@@ -3,7 +3,14 @@ class Event < ActiveRecord::Base
 
   has_many :event_submissions
 
+  has_many :event_rewards
+  validates_associated :event_rewards
+  accepts_nested_attributes_for :event_rewards,
+                                :reject_if => :all_blank,
+                                :allow_destroy => true
+
   has_many :form_questions
+  validates_associated :form_questions
   accepts_nested_attributes_for :form_questions,
                                 :reject_if => :all_blank,
                                 :allow_destroy => true

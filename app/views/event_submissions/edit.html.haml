@@ -1,9 +1,11 @@
 .container
   .row
-    %h1 Editing event_submission
+    %h1
+      Editing Submission for
+      = @event.name
 
-    = render 'form'
+  = render 'form'
 
-    = link_to 'Show', event_event_submission_path(@event, @event_submission)
-    \|
-    = link_to 'Back', event_event_submissions_path
+  = link_to 'Show', event_event_submission_path(@event, @event_submission)
+  \|
+  = link_to 'Back', event_event_submissions_path

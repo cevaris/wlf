@@ -1,35 +1,46 @@
 .container
-  .row
-    %p#notice= notice
+  %p#notice= notice
 
-    %p
-      %b Name:
-      = @event.name
-    %p
-      %b Description:
-      = @event.description.html_safe
-    %p
-      %b Start date:
-      = @event.start_date
-    %p
-      %b End date:
-      = @event.end_date
+  %p
+    %b Name:
+    = @event.name
+  %p
+    %b Description:
+    = @event.description.html_safe
+  %p
+    %b Start date:
+    = @event.start_date
+  %p
+    %b End date:
+    = @event.end_date
 
-    %p
-      %table.table
-        %thead
+  %p
+    %table.table
+      %thead
+        %tr
+          %th Question
+          %th Question Type
+      %tbody
+        - @event.form_questions.each do |question|
           %tr
-            %th Question
-            %th Question Type
-        %tbody
-          - @event.form_questions.each do |question|
-            %tr
-              %td= question.name
-              %td= question.field_type
+            %td= question.name
+            %td= question.field_type
 
-    = link_to 'Edit', edit_event_path(@event)
-    \|
-    = link_to 'Back', events_path
+ %p
+    - @event.event_rewards.each do |reward|
+      .container
+        .col-md-4
+          .row
+            = reward.name
+          .row
+            = reward.price
+        .col-md-8
+          .row
+            = reward.description
 
-    %p
-      = link_to 'Apply', new_event_event_submission_path(@event)
+  = link_to 'Edit', edit_event_path(@event)
+  \|
+  = link_to 'Back', events_path
+
+  %p
+    = link_to 'Apply', new_event_event_submission_path(@event)

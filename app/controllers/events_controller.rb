@@ -55,6 +55,13 @@ class EventsController < ApplicationController
           :name,
           :field_type,
           :_destroy
+        ],
+        event_rewards_attributes: [
+          :id,
+          :name,
+          :description,
+          :price,
+          :_destroy
         ]
       )
     end

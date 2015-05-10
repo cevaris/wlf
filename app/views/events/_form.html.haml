@@ -29,6 +29,12 @@
     .links
       = link_to_add_association 'Add Question', f, :form_questions, {class: 'btn btn-default'}
 
+  #event_rewards
+    = f.fields_for(:event_rewards) do |qf|
+      = render 'event_reward_fields', f: qf
+    .links
+      = link_to_add_association 'Add Reward', f, :event_rewards, {class: 'btn btn-default'}
+
   = f.hidden_field :timezone
   = f.hidden_field :account_id, value: current_account.id
   %br
@@ -40,7 +46,7 @@
   $('.wysihtml5').editable({
     inlineMode: false,
     imageUpload: false
-  a});
+  });
   $('.date').datetimepicker({
     format: 'YYYY-MM-DDTHH:mm:00Z',
     sideBySide: true
