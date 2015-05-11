@@ -1,42 +1,48 @@
 .container
   %p#notice= notice
 
-  %p
-    %b Name:
-    = @event.name
-  %p
-    %b Description:
-    = @event.description.html_safe
-  %p
-    %b Start date:
-    = @event.start_date
-  %p
-    %b End date:
-    = @event.end_date
+  .row
+    %p
+      %b Name:
+      = @event.name
+    %p
+      %b Description:
+      = @event.description.html_safe
+  .row.text-center
+    .row
+      .col-xs-6.col-md-6
+        %h2 Start Event
+      .col-xs-6.col-md-6
+        %h2 End Event
+    .row
+      .col-xs-6.col-md-6
+        = @event.start_date
+      .col-xs-6.col-md-6
+        = @event.end_date
 
-  %p
-    %table.table
-      %thead
-        %tr
-          %th Question
-          %th Question Type
-      %tbody
-        - @event.form_questions.each do |question|
-          %tr
-            %td= question.name
-            %td= question.field_type
-
- %p
+  %hr
+  %h2 Sponsor Rewards
+  .row
     - @event.event_rewards.each do |reward|
-      .container
-        .col-md-4
+      .row
+        .col-xs-4.col-md-4
           .row
             = reward.name
           .row
+            = currency_symbol
             = reward.price
-        .col-md-8
-          .row
-            = reward.description
+        .col-xs-8.col-md-8
+          = reward.description.html_safe
+      %br
+
+  %hr
+  %h2 Sponsor Form
+  .row
+    - @event.form_questions.each do |question|
+      .row
+        = question.name
+      %br
+
 
   = link_to 'Edit', edit_event_path(@event)
   \|

@@ -11,6 +11,8 @@
         = f.text_field :name, class: 'form-control', placeholder: 'Event Name/Title'
       .form-group
         = f.text_area :description, class: 'form-control wysihtml5', placeholder: 'Event Description'
+  %hr
+  %h2 Event Start/End
   .row
     .col-md-6
       .input-group.date
@@ -22,18 +24,26 @@
         = f.text_field :end_date, class: 'form-control', placeholder: 'End Date'
         %span.input-group-addon
           %span.glyphicon.glyphicon-calendar
-  %br
+  %hr
+  %h2 Sponsor Rewards
   #form_questions
     = f.fields_for(:form_questions) do |qf|
       = render 'form_question_fields', f: qf
     .links
       = link_to_add_association 'Add Question', f, :form_questions, {class: 'btn btn-default'}
 
+  %hr
+  %h2 Sponsor Form
   #event_rewards
     = f.fields_for(:event_rewards) do |qf|
       = render 'event_reward_fields', f: qf
     .links
       = link_to_add_association 'Add Reward', f, :event_rewards, {class: 'btn btn-default'}
+
+
+
+      -# This looks pretty good
+        -# http://elegantbrew.tumblr.com/post/70314444570/multi-step-forms-with-rails-4-and-statemachine
 
   = f.hidden_field :timezone
   = f.hidden_field :account_id, value: current_account.id
@@ -42,17 +52,21 @@
     = f.submit 'Save', class: 'btn btn-default'
 
 :javascript
-  // $('.wysihtml5').wysihtml5();
-  $('.wysihtml5').editable({
-    inlineMode: false,
-    imageUpload: false
+  var initJS = function(){
+    $('select').select2();
+    $('.wysihtml5').editable({
+      inlineMode: false,
+      imageUpload: false
+    });
+  }
+
+  $('form').on('cocoon:after-insert', function() {
+    initJS();
   });
+
+  initJS();
   $('.date').datetimepicker({
     format: 'YYYY-MM-DDTHH:mm:00Z',
     sideBySide: true
   });
   $('#event_timezone').set_timezone()
-  $('select').select2();
-  $('form').on('cocoon:after-insert', function() {
-    $('select').select2();
-  });

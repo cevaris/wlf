@@ -3,7 +3,7 @@ class Event < ActiveRecord::Base
 
   has_many :event_submissions
 
-  has_many :event_rewards
+  has_many :event_rewards, -> { order('created_at').order('price_cents') }
   validates_associated :event_rewards
   accepts_nested_attributes_for :event_rewards,
                                 :reject_if => :all_blank,
