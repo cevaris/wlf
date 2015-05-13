@@ -1,4 +1,5 @@
 class EventSubmissionsController < ApplicationController
+  include PaymentCardsHelper
 
   load_and_authorize_resource :event
   load_and_authorize_resource :event_submission, through: :event
@@ -19,6 +20,7 @@ class EventSubmissionsController < ApplicationController
 
   def new
     @event_submission = EventSubmission.new
+    @event_submission.build_payment_card
     @event.form_questions.each do |q|
       @event_submission.form_answers.build(
         event_submission: @event_submission,
@@ -33,14 +35,10 @@ class EventSubmissionsController < ApplicationController
 
   def create
     @event_submission = EventSubmission.new(event_submission_params)
-    # Stripe::Token.create(
-    #   :card => {
-    #     :number => "4242424242424242",
-    #     :exp_month => 5,
-    #     :exp_year => 2016,
-    #     :cvc => "314"
-    #   },
-    # )
+    @event_submission.payment_card = token_create(
+      event_submission_params['payment_card_attributes']
+    )
+    logger.info @event_submission.payment_card.inspect
     #@event_submission.save
     respond_with(@event, @event_submission)
   end
@@ -74,6 +72,12 @@ class EventSubmissionsController < ApplicationController
         :form_question_id,
         :value,
         :_destroy
+      ],
+      payment_card_attributes: [
+        :number,
+        :cvc,
+        :exp_month,
+        :exp_year
       ]
     )
   end

@@ -5,6 +5,7 @@ class CreatePaymentCards < ActiveRecord::Migration
       t.string :brand
       t.string :last4
       t.string :stripe_token
+      t.string :card_token
 
       t.timestamps
     end

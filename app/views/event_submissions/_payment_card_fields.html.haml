@@ -2,10 +2,10 @@
   .row
     .col-xs-8.col-md-8
       .field
-        = f.text_field :number, class: 'form-control', placeholder: 'Card Number', pattern: '\d{16}'
+        = f.text_field :number, class: 'form-control', placeholder: 'Card Number', pattern: '\d{16}', value: '4242424242424242'
     .col-xs-4.col-md-4
       .field
-        = f.text_field :cvc, class: 'form-control', placeholder: 'Security Code (CVC)', pattern: '\d{3}'
+        = f.text_field :cvc, class: 'form-control', placeholder: 'Security Code (CVC)', pattern: '\d{3}', value: '123'
   %br
   .row
     .col-xs-8.col-md-8

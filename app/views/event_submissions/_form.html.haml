@@ -22,8 +22,11 @@
       = check_box_tag "event_rewards_ids[#{r.id}]", r.id
       = label_tag "event_rewards_ids[#{r.id}]", r.name
   %br
+  -# https://github.com/railscasts/288-billing-with-stripe
+  -# https://stripe.com/docs/api/ruby#create_card_token
+  -# https://support.stripe.com/questions/can-i-save-a-card-and-charge-it-later
   #payment_cards
-    = f.fields_for(:card) do |ff|
+    = f.fields_for(:payment_card) do |ff|
       = render 'payment_card_fields', f: ff
 
   %br

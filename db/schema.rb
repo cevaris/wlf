@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150513142035) do
+ActiveRecord::Schema.define(version: 20150513215721) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -187,12 +187,12 @@ ActiveRecord::Schema.define(version: 20150513142035) do
     t.integer  "event_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "card_id"
+    t.integer  "payment_card_id"
   end
 
   add_index "event_submissions", ["account_id"], name: "index_event_submissions_on_account_id", using: :btree
-  add_index "event_submissions", ["card_id"], name: "index_event_submissions_on_card_id", using: :btree
   add_index "event_submissions", ["event_id"], name: "index_event_submissions_on_event_id", using: :btree
+  add_index "event_submissions", ["payment_card_id"], name: "index_event_submissions_on_payment_card_id", using: :btree
 
   create_table "events", force: true do |t|
     t.string   "name"
@@ -233,6 +233,7 @@ ActiveRecord::Schema.define(version: 20150513142035) do
     t.string   "brand"
     t.string   "last4"
     t.string   "stripe_token"
+    t.string   "card_token"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
