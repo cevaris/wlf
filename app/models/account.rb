@@ -13,6 +13,7 @@ class Account < ActiveRecord::Base
 
   has_many :events, dependent: :destroy
   has_many :event_submissions, dependent: :destroy
+  has_many :payment_cards, dependent: :destroy
 
   validates :first_name, presence: true, allow_blank: false
   validates :last_name, presence: true, allow_blank: true

@@ -1,6 +1,7 @@
 class EventSubmission < ActiveRecord::Base
   belongs_to :account
   belongs_to :event
+  belongs_to :payment_card
 
   has_many :form_answers, dependent: :destroy
   validates_associated :form_answers

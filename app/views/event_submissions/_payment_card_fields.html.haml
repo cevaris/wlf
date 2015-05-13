@@ -1,0 +1,16 @@
+.nested-fields
+  .row
+    .col-xs-8.col-md-8
+      .field
+        = f.text_field :number, class: 'form-control', placeholder: 'Card Number', pattern: '\d{16}'
+    .col-xs-4.col-md-4
+      .field
+        = f.text_field :cvc, class: 'form-control', placeholder: 'Security Code (CVC)', pattern: '\d{3}'
+  %br
+  .row
+    .col-xs-8.col-md-8
+      .field
+        = f.select :exp_month, PaymentCard::MONTHS, {}, {class: 'select2 form-control'}
+    .col-xs-4.col-md-4
+      .field
+        = f.select :exp_year, payment_card_years, {}, {class: 'select2 form-control'}

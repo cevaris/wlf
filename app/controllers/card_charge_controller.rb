@@ -1,0 +1,2 @@
+class CardChargeController < ApplicationController
+end

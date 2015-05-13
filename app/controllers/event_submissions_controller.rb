@@ -33,7 +33,15 @@ class EventSubmissionsController < ApplicationController
 
   def create
     @event_submission = EventSubmission.new(event_submission_params)
-    @event_submission.save
+    # Stripe::Token.create(
+    #   :card => {
+    #     :number => "4242424242424242",
+    #     :exp_month => 5,
+    #     :exp_year => 2016,
+    #     :cvc => "314"
+    #   },
+    # )
+    #@event_submission.save
     respond_with(@event, @event_submission)
   end
 

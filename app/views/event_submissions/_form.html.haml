@@ -16,5 +16,19 @@
   #form_answers
     = f.fields_for(:form_answers) do |ff|
       = render 'form_answer_fields', f: ff
+
+  #event_rewards
+    - @event.event_rewards.each do |r|
+      = check_box_tag "event_rewards_ids[#{r.id}]", r.id
+      = label_tag "event_rewards_ids[#{r.id}]", r.name
+  %br
+  #payment_cards
+    = f.fields_for(:card) do |ff|
+      = render 'payment_card_fields', f: ff
+
+  %br
   .actions
     = f.submit 'Save'
+
+:javascript
+  $('.select2').select2();
