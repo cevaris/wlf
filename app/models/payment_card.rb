@@ -21,4 +21,5 @@ class PaymentCard < ActiveRecord::Base
   attr_accessor :cvc
   attr_accessor :exp_month
   attr_accessor :exp_year
+
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150513215721) do
+ActiveRecord::Schema.define(version: 20150514015613) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20150513215721) do
     t.integer  "address_id"
     t.integer  "account_role_id"
     t.integer  "account_type_id"
+    t.string   "customer_token"
   end
 
   add_index "accounts", ["account_role_id"], name: "index_accounts_on_account_role_id", using: :btree
@@ -188,6 +189,7 @@ ActiveRecord::Schema.define(version: 20150513215721) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "payment_card_id"
+    t.string   "selected_rewards"
   end
 
   add_index "event_submissions", ["account_id"], name: "index_event_submissions_on_account_id", using: :btree
@@ -234,6 +236,8 @@ ActiveRecord::Schema.define(version: 20150513215721) do
     t.string   "last4"
     t.string   "stripe_token"
     t.string   "card_token"
+    t.string   "customer_token"
+    t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

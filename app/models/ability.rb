@@ -28,7 +28,11 @@ class Ability
     #
     # See the wiki for details:
     # https://github.com/ryanb/cancan/wiki/Defining-Abilities
+    Rails.logger.info "CANCAN START"
     if user and user.account
+      Rails.logger.info(
+        "CANCAN FOUND #{user.email} #{user.account.account_role.name}"
+      )
       account = user.account
 
       super_admin = AccountRole.get(:super_admin)
@@ -36,15 +40,20 @@ class Ability
       basic = AccountRole.get(:basic)
 
       if account.account_role == super_admin
+        Rails.logger.info "CANCAN FOUND SUPER ADMIN"
         can :manage, :all
       elsif account.account_role == admin
-        can :manage, User, id: user.id
-        can :manage, Account
-        can :manage, Address
+        Rails.logger.info "CANCAN FOUND ADMIN"
+        # Web maintainers
+        # can :manage, User, id: user.id
+        # can :manage, Account
+        # can :manage, Address
 
-        can :manage, Event
-        can :manage, EventSubmission
+        # can :manage, Event
+      # can :manage, EventSubmission
+        can :manage, :all
       elsif account.account_role == basic
+        Rails.logger.info "CANCAN FOUND BASIC USER"
         # Donors, Sponsors
         can :manage, User, :id => user.id
         can :manage, Account, :id => account.id
@@ -55,5 +64,6 @@ class Ability
       can :create, EventSubmission
 
     end
+    Rails.logger.info "END CANCAN"
   end
 end

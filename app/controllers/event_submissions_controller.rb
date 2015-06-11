@@ -35,10 +35,37 @@ class EventSubmissionsController < ApplicationController
 
   def create
     @event_submission = EventSubmission.new(event_submission_params)
-    @event_submission.payment_card = token_create(
+    logger.info @event_submission.inspect
+
+    @selected_rewards = get_event_rewards(
+      @event_submission['selected_rewards']
+    )
+    logger.info @selected_rewards.inspect
+
+    @total_cost = calculate_event_rewards_total(selected_rewards)
+    logger.info "Total Cost #{@total_cost}"
+
+
+    card_data = create_stripe_hash(
       event_submission_params['payment_card_attributes']
     )
-    logger.info @event_submission.payment_card.inspect
+    logger.info card_data.inspect
+
+    stripe_token = Api::Stripe.token_create(card_data)
+    logger.info stripe_token.inspect
+
+    payment_card = Api::Stripe.from_stripe_token(stripe_token)
+    logger.info payment_card.inspect
+
+    charge = Api::Stripe.charge_create(
+      stripe_data['email'],
+      payment_card.stripe_token,
+      @total_cost
+    )
+    logger.info "Successfull charge #{charge.inspect}"
+
+    # From Customer
+
     #@event_submission.save
     respond_with(@event, @event_submission)
   end
@@ -66,6 +93,7 @@ class EventSubmissionsController < ApplicationController
     params.require(:event_submission).permit(
       :event_id,
       :account_id,
+      :selected_rewards => [],
       form_answers_attributes: [
         :id,
         :event_submission_id,
@@ -74,6 +102,7 @@ class EventSubmissionsController < ApplicationController
         :_destroy
       ],
       payment_card_attributes: [
+        :email,
         :number,
         :cvc,
         :exp_month,

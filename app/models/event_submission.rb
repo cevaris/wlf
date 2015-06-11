@@ -12,7 +12,9 @@ class EventSubmission < ActiveRecord::Base
                                 :reject_if => :all_blank,
                                 :allow_destroy => true
 
+  serialize :selected_rewards
+
   validates_uniqueness_of :event,
                           scope: :account,
-                          message: lambda { |x,y| "has already has your submission" }
+                          message: lambda { |x,y| "has already been submitted" }
 end
