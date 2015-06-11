@@ -1,11 +1,14 @@
 class EventSubmissionsController < ApplicationController
+  include EventSubmissionsHelper
   include PaymentCardsHelper
 
-  load_and_authorize_resource :event
-  load_and_authorize_resource :event_submission, through: :event
+  load_and_authorize_resource :event, except: [:calculate]
+  load_and_authorize_resource :event_submission,
+                              through: :event,
+                              except: [:calculate]
 
   before_action :set_event_submission, only: [:show, :edit, :update, :destroy]
-  before_action :set_event
+  before_action :set_event, only: [:show, :edit, :update, :destroy]
 
   respond_to :html
 
@@ -42,7 +45,7 @@ class EventSubmissionsController < ApplicationController
     )
     logger.info @selected_rewards.inspect
 
-    @total_cost = calculate_event_rewards_total(selected_rewards)
+    @total_cost = calculate_event_rewards_total(@selected_rewards)
     logger.info "Total Cost #{@total_cost}"
 
 
@@ -78,6 +81,21 @@ class EventSubmissionsController < ApplicationController
   def destroy
     @event_submission.destroy
     respond_with(@event, @event_submission)
+  end
+
+  def calculate
+    if params.include? 'event_submission'
+      @selected_rewards = get_event_rewards(
+        params['event_submission']['selected_rewards']
+      )
+      logger.info @selected_rewards.inspect
+
+      @total_cost = calculate_event_rewards_total(@selected_rewards)
+      logger.info "Total Cost #{@total_cost}"
+      render text: @total_cost
+    else
+      render text: 0.0
+    end
   end
 
   private

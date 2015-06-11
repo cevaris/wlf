@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+  post 'event_rewards_calculate' => 'event_submissions#calculate'
+
   resources :events do
     resources :event_submissions, path: 'submissions'
   end
