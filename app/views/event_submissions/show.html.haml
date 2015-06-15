@@ -10,7 +10,13 @@
       = @event_submission.event.name
     %p
       %b Submitted on:
-      = @event_submission.created_at
+      = @event_submission.formatted_created_at
+
+    %p
+      %b Event Rewards:
+      %ul
+        - @event_submission.event_rewards.each do |reward|
+          %li= "#{reward.name}: #{Money.default_currency.symbol}#{reward.price}"
 
     %p
       %table.table

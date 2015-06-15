@@ -10,4 +10,12 @@ module ApplicationHelper
   def payment_card_years
     Date.today.year.. 15.years.from_now.year
   end
+
+  def formatted_date(date, timezone, format=:llllz)
+    unless date.nil?
+      I18n.l date.in_time_zone(timezone), format: format
+    else
+      nil
+    end
+  end
 end

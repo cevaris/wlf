@@ -1,14 +1,24 @@
-.continer
+.container
   %p#notice= notice
 
-  %p
+  .row
     %b Email:
     = @account.user.email
-  %p
+
+  .row
     %b Name:
     = @account.name
-  - unless@account.address.first_line.nil?
-    %p
+
+  .row
+    %b Account Type:
+    = @account.account_type.name
+
+  .row
+    %b Account Role:
+    = @account.account_role.name
+
+  - unless @account.address.first_line.nil?
+    .row
       %b Address:
       = render partial: 'address', locals: {address: @account.address}
 

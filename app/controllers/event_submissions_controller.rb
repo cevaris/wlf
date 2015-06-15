@@ -40,36 +40,36 @@ class EventSubmissionsController < ApplicationController
     @event_submission = EventSubmission.new(event_submission_params)
     logger.info @event_submission.inspect
 
-    @selected_rewards = get_event_rewards(
-      @event_submission['selected_rewards']
-    )
-    logger.info @selected_rewards.inspect
+    # @selected_rewards = get_event_rewards(
+    #   @event_submission['selected_rewards']
+    # )
+    # logger.info @selected_rewards.inspect
 
-    @total_cost = calculate_event_rewards_total(@selected_rewards)
-    logger.info "Total Cost #{@total_cost}"
+    # @total_cost = calculate_event_rewards_total(@selected_rewards)
+    # logger.info "Total Cost #{@total_cost}"
 
 
-    card_data = create_stripe_hash(
-      event_submission_params['payment_card_attributes']
-    )
-    logger.info card_data.inspect
+    # card_data = create_stripe_hash(
+    #   event_submission_params['payment_card_attributes']
+    # )
+    # logger.info card_data.inspect
 
-    stripe_token = Api::Stripe.token_create(card_data)
-    logger.info stripe_token.inspect
+    # stripe_token = Api::Stripe.token_create(card_data)
+    # logger.info stripe_token.inspect
 
-    payment_card = Api::Stripe.from_stripe_token(stripe_token)
-    logger.info payment_card.inspect
+    # payment_card = Api::Stripe.from_stripe_token(stripe_token)
+    # logger.info payment_card.inspect
 
-    charge = Api::Stripe.charge_create(
-      stripe_data['email'],
-      payment_card.stripe_token,
-      @total_cost
-    )
-    logger.info "Successfull charge #{charge.inspect}"
+    # charge = Api::Stripe.charge_create(
+    #   stripe_data['email'],
+    #   payment_card.stripe_token,
+    #   @total_cost
+    # )
+    # logger.info "Successfull charge #{charge.inspect}"
 
     # From Customer
 
-    #@event_submission.save
+    @event_submission.save
     respond_with(@event, @event_submission)
   end
 

@@ -1,4 +1,6 @@
 class Event < ActiveRecord::Base
+  include ApplicationHelper
+
   belongs_to :account
 
   has_many :event_submissions
@@ -20,15 +22,6 @@ class Event < ActiveRecord::Base
   validates :start_date, presence: true, allow_blank: false
   # validates :end_date, presence: true, allow_blank: false
 
-
-  def formatted_date(date, timezone, format=:llllz)
-    unless date.nil?
-      I18n.l date.in_time_zone(timezone), format: format
-    else
-      nil
-    end
-  end
-
   def formatted_start_date
     formatted_date(self.start_date, self.timezone)
   end
@@ -38,7 +31,6 @@ class Event < ActiveRecord::Base
   end
 
   def set_dates(params)
-    # debugger
     if self.timezone
       parser = ActiveSupport::TimeZone[self.timezone]
 

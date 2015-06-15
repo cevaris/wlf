@@ -6,7 +6,7 @@
     .col-md-5
       .form-group.input-group
         %span.input-group-addon
-          = Money.default_currency.symbol
+          = currency_symbol
         = f.text_field :price, class: 'form-control'
     .col-md-2
       .form-group

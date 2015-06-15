@@ -21,9 +21,10 @@
     .col-md-6
       %h2 Rewards
       #selected_rewards
-        = collection_check_boxes(:event_submission, :selected_rewards, @event.event_rewards, :id, :name) do |b|
-          .field
-            = b.label(class: 'check_box') { "#{b.check_box} #{b.text}: #{b.object.price}" }
+        - @event.event_rewards.each do |reward|
+          %label.checkbox{ for: "event_submission_selected_rewards_#{reward.id}" }
+            = check_box_tag "event_submission[selected_rewards][]", reward.id, (@event_submission.event_rewards.include?(reward) if @event_submission.selected_rewards), {id: "event_submission_selected_rewards_#{reward.id}"}
+            = "#{reward.name}: #{Money.default_currency.symbol}#{reward.price}"
     .col-md-6
       %h2 Total
       #rewards_total.h3

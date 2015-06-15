@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   load_and_authorize_resource
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_event, only: [:show, :edit, :update, :destroy, :report]
 
   respond_to :html
 
@@ -41,9 +41,18 @@ class EventsController < ApplicationController
     respond_with(@event)
   end
 
+  def report
+    @events = EventSubmission.find_by_event_id(@event.id)
+    debugger
+  end
+
   private
     def set_event
-      @event = Event.find(params[:id])
+      begin
+        @event = Event.find(params[:id])
+      rescue ActiveRecord::RecordNotFound
+        @event = Event.find(params[:event_id])
+      end
     end
 
     def event_params

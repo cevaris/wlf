@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
 
-  post 'event_rewards_calculate' => 'event_submissions#calculate'
-
   resources :events do
     resources :event_submissions, path: 'submissions'
+    get 'generate_report' => 'events#report'
   end
+  post 'event_rewards_calculate' => 'event_submissions#calculate'
 
   devise_for :users,
              :controllers => {

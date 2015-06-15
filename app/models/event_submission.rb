@@ -1,4 +1,6 @@
 class EventSubmission < ActiveRecord::Base
+  include ApplicationHelper
+
   belongs_to :account
   belongs_to :event
 
@@ -17,4 +19,15 @@ class EventSubmission < ActiveRecord::Base
   validates_uniqueness_of :event,
                           scope: :account,
                           message: lambda { |x,y| "has already been submitted" }
+
+
+  def formatted_created_at
+    formatted_date(self.created_at, self.event.timezone)
+  end
+
+  def event_rewards
+    EventReward.find(
+      self.selected_rewards.reject(&:empty?).map(&:to_i)
+    )
+  end
 end
