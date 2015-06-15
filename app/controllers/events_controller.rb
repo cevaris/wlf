@@ -42,8 +42,37 @@ class EventsController < ApplicationController
   end
 
   def report
-    @events = EventSubmission.find_by_event_id(@event.id)
-    debugger
+    @event_submissions = EventSubmission.where(event_id: @event.id)
+    logger.info "EVENT SUBMISSIONS #{@event_submissions.inspect}"
+
+    names = [
+      'event_name',
+      'event_creator_name',
+      'submitter_name',
+      'submitter_email',
+      'submitted_at',
+      'total_donation'
+    ] << @event.form_questions.map(&:name)
+
+    data = CSV.generate do |csv|
+      csv << names.flatten
+      @event_submissions.each do |es|
+        row = [
+          @event.name,
+          @event.account.name,
+          es.account.name,
+          es.account.user.email,
+          es.created_at,
+          es.event_rewards.map(&:price).sum
+        ] << es.form_answers.map(&:value)
+        csv << row.flatten
+      end
+    end
+
+    respond_to do |format|
+      format.csv { render text: data }
+      # format.xls { send_data @events.to_csv(col_sep: "\t") }
+    end
   end
 
   private

@@ -30,4 +30,5 @@ class EventSubmission < ActiveRecord::Base
       self.selected_rewards.reject(&:empty?).map(&:to_i)
     )
   end
+
 end

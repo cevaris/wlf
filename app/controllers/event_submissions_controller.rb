@@ -105,6 +105,8 @@ class EventSubmissionsController < ApplicationController
 
   def set_event_submission
     @event_submission = EventSubmission.find(params[:id])
+    @report = String.new
+    
   end
 
   def event_submission_params

@@ -17,7 +17,7 @@
     %b Account Role:
     = @account.account_role.name
 
-  - unless @account.address.first_line.nil?
+  - unless @account.address.first_line.blank?
     .row
       %b Address:
       = render partial: 'address', locals: {address: @account.address}
