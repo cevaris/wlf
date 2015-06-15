@@ -1,19 +1,17 @@
-%p#notice= notice
+.continer
+  %p#notice= notice
 
-%p
-  %b User:
-  = @account.user
-%p
-  %b First name:
-  = @account.first_name
-%p
-  %b Last name:
-  = @account.last_name
-- if @account.address
   %p
-    %b Address:
-    = @account.address.inspect
+    %b Email:
+    = @account.user.email
+  %p
+    %b Name:
+    = @account.name
+  - unless@account.address.first_line.nil?
+    %p
+      %b Address:
+      = render partial: 'address', locals: {address: @account.address}
 
-= link_to 'Edit', edit_account_path(@account)
-\|
-= link_to 'Back', accounts_path
+  = link_to 'Edit', edit_account_path(@account)
+  \|
+  = link_to 'Back', accounts_path

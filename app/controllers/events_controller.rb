@@ -23,12 +23,16 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
+    @event = @event.set_dates(event_params)
     @event.save
     respond_with(@event)
   end
 
   def update
+    logger.info event_params
     @event.update(event_params)
+    @event = @event.set_dates(event_params)
+    @event.save
     respond_with(@event)
   end
 

@@ -15,17 +15,18 @@
   %h2 Event Start/End
   .row
     .col-md-6
-      .input-group.date
-        = f.text_field :start_date, class: 'form-control', placeholder: 'Start Date'
+      .form-group.input-group.date
+        = f.text_field :start_date, class: 'form-control', placeholder: 'Start Date', value: "#{@event.formatted_start_date if @event.start_date}"
         %span.input-group-addon
           %span.glyphicon.glyphicon-calendar
-    .col-md-6.date
-      .input-group.date
-        = f.text_field :end_date, class: 'form-control', placeholder: 'End Date'
+    .col-md-6
+      .form-group.input-group.date
+        = f.text_field :end_date, class: 'form-control', placeholder: 'End Date', value: "#{@event.formatted_end_date if @event.end_date}"
         %span.input-group-addon
           %span.glyphicon.glyphicon-calendar
+
   %hr
-  %h2 Sponsor Rewards
+  %h2 Sponsor Form
   #form_questions
     = f.fields_for(:form_questions) do |qf|
       = render 'form_question_fields', f: qf
@@ -33,7 +34,7 @@
       = link_to_add_association 'Add Question', f, :form_questions, {class: 'btn btn-default'}
 
   %hr
-  %h2 Sponsor Form
+  %h2 Sponsor Rewards
   #event_rewards
     = f.fields_for(:event_rewards) do |qf|
       = render 'event_reward_fields', f: qf
@@ -53,7 +54,8 @@
 
 :javascript
   var initJS = function(){
-    $('select').select2();
+    $('#event_timezone').set_timezone()
+    $('select').select2({dropdownAutoWidth: true});
     $('.wysihtml5').editable({
       inlineMode: false,
       imageUpload: false
@@ -66,7 +68,6 @@
 
   initJS();
   $('.date').datetimepicker({
-    format: 'YYYY-MM-DDTHH:mm:00Z',
+    format: 'LLLL',
     sideBySide: true
   });
-  $('#event_timezone').set_timezone()

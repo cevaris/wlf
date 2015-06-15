@@ -25,3 +25,7 @@ en:
   user:
     signup: 'Create Account'
     signin: 'Sign in'
+  time:
+    formats:
+      llll: '%A, %B %e %Y %r'
+      llllz: '%A, %B %e %Y %r %Z'
